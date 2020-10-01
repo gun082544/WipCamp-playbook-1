@@ -1,0 +1,34 @@
+---
+- name: yum update
+  yum:
+    name: '*' 
+
+- name: install yum -utils
+  shell: 'yum install -y yum-utils'
+  remote_user: root
+
+- name: add docker repository
+  shell: 'yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo'
+  remote_user: root
+
+- name: apt install docker-ce
+  yum:
+    name: docker-ce
+  remote_user: root
+- name: apt install docker-ce-cli
+  yum:
+    name: docker-ce-cli
+  remote_user: root
+
+- name: apt install containerd.io
+  yum:
+    name: containerd.io
+  remote_user: root
+
+- name: start docker service
+  systemd:
+    name: docker
+    state: started
+  remote_user: root
