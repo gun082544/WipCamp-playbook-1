@@ -1,0 +1,19 @@
+---
+- name: yum update
+  yum:
+    name: '*' 
+
+- name: cat kubernetes repository
+  shell: 'cat <<EOF > /etc/yum.repos.d/kubernetes.repo'
+
+- name: install kubectl
+  yum:
+    name: kubectl
+
+- name: install kubelet
+  yum:
+    name: kubelet
+
+- name: install kubeadm
+  yum:
+    name: kubeadm

@@ -1,0 +1,16 @@
+---
+
+- name: set_fact gatherFactLinux
+  set_fact:
+    gatherFactLinux: []
+
+- name: Gathering facts Linux
+  setup:
+  delegate_facts: True
+  remote_user: "{{ remoteUserofLinux }}"
+  ignore_unreachable: True
+  register: gatherFactLinux
+
+- name: Show facts Linux
+  debug:
+    var: gatherFactLinux
