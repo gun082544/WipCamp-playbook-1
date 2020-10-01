@@ -1,0 +1,31 @@
+---
+- name: yum update
+  yum:
+    update: yes
+
+- name: Download repository
+  shell: sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+- name: add key repository
+  shell: sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+- name: yum upgrade
+  shell: yum upgrade
+
+- name: yum install jenkins
+  yum:
+    name: jenkins
+
+- name: yum install java-1.8.0-openjdk-devel
+  yum:
+    name: java-1.8.0-openjdk-devel
+
+- name: systemctl daemon_reload
+  systemd:
+    daemon_reload: yes
+
+- name: start jenkins service
+  systemd:
+    name: jenkins
+    state: started
