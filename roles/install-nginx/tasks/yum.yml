@@ -1,0 +1,8 @@
+---
+- name: yum update
+  yum:
+    name: '*' 
+
+- name: install NGINX
+  yum:
+    name: nginx

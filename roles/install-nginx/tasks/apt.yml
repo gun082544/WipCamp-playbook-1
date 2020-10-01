@@ -1,0 +1,12 @@
+---
+- name: apt update
+  apt:
+    update: yes
+
+- name: apt upgrade
+  apt:
+    upgrade: yes
+
+- name: install NGINX
+  apt:
+    name: nginx

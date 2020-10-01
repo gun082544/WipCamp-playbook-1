@@ -1,0 +1,6 @@
+---
+- include_tasks: gather_delegation.yml
+- include_tasks: apt.yml
+  when: gatherFactLinux.ansible_facts.ansible_distribution == 'Ubuntu' or gatherFactLinux.ansible_facts.ansible_distribution == 'Debian'
+- include_tasks: yum.yml
+  when: gatherFactLinux.ansible_facts.ansible_distribution == 'CentOS'
